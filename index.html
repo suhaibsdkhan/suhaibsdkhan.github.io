@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Suhaib Sadeque Khan</title>
-<meta name="description" content="Suhaib Sadeque Khan: Computing student at Queen's University, quality and security engineering.">
+<meta name="description" content="Suhaib Sadeque Khan: software engineer and quality engineer. Computing at Queen's University.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -115,6 +115,10 @@ section { display: grid; gap: 28px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px; display: grid; gap: 12px; align-content: start; min-width: 0; }
 .card h3 { font-size: 1.35rem; font-weight: 700; }
 .card p { margin: 0; color: var(--muted); }
+.skills { display: grid; grid-template-columns: max-content 1fr; gap: 8px 16px; margin: 4px 0 0; font-size: 15px; }
+.skills dt { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding-top: 2px; }
+.skills dd { margin: 0; min-width: 0; }
+@media (max-width: 420px) { .skills { grid-template-columns: 1fr; gap: 2px; } .skills dd { margin-bottom: 8px; } }
 
 /* Ledger of smaller repos */
 .ledger { width: 100%; border-collapse: collapse; font-size: 15px; }
@@ -159,6 +163,7 @@ footer { font-family: var(--mono); font-size: 12.5px; color: var(--muted); displ
   <header class="top">
     <span class="handle">suhaibsdkhan</span>
     <nav aria-label="Sections">
+      <a href="#skills">Skills</a>
       <a href="#work">Work</a>
       <a href="#more">More projects</a>
       <a href="#experience">Experience</a>
@@ -168,15 +173,16 @@ footer { font-family: var(--mono); font-size: 12.5px; color: var(--muted); displ
 
   <div class="hero">
     <p class="label">Computing · Queen's University · Kingston, ON</p>
-    <h1>Suhaib Sadeque Khan.<br>I test software <span>until it breaks</span>, then make sure it doesn't.</h1>
-    <p class="lede">Quality engineer and Computing student working toward a cybersecurity specialization. I build test frameworks, CI pipelines with security gates, and the occasional app I actually use. <em>Looking for 2027 new-grad roles in software, quality and security engineering.</em></p>
+    <h1>Suhaib Sadeque Khan.<br>I build software, <span>and the tests that prove it works.</span></h1>
+    <p class="lede">Software engineer and quality engineer, studying Computing at Queen's with a cybersecurity focus. I build full-stack apps and APIs in Java, TypeScript and Python, and I design the automation, CI pipelines and security gates that keep them reliable. <em>Looking for 2027 new-grad roles in software engineering and quality engineering.</em></p>
 
-    <div class="run" role="img" aria-label="Summary in the style of a test run: 4 featured projects passing, Java, TypeScript, Python, C# and C, open to 2027 new-grad roles.">
+    <div class="run" role="img" aria-label="Summary in the style of a test run: open to 2027 new-grad software engineering and quality engineering roles; builds full-stack apps and test automation in Java, TypeScript, Python, C# and C.">
       <div class="row"><span class="k">$ suite</span><span>portfolio --all</span></div>
-      <div class="row"><span class="k">featured</span><span><span class="ok">✓ 4 passed</span> · Harbour Bank QE, Secure Test Dashboard, SettleUp, Spendly</span></div>
+      <div class="row"><span class="k">roles</span><span>software engineering · quality engineering</span></div>
+      <div class="row"><span class="k">builds</span><span>full-stack web apps · REST APIs · cloud infra on AWS</span></div>
+      <div class="row"><span class="k">verifies</span><span>test automation · performance · AppSec in CI/CD</span></div>
       <div class="row"><span class="k">languages</span><span>Java · TypeScript · Python · C# · C</span></div>
-      <div class="row"><span class="k">focus</span><span>test automation · AppSec in CI/CD · cloud infra</span></div>
-      <div class="row"><span class="k">status</span><span><span class="ok">open to 2027 new-grad roles</span> <span class="cursor" aria-hidden="true"></span></span></div>
+      <div class="row"><span class="k">status</span><span><span class="ok">✓ open to 2027 new-grad roles</span> <span class="cursor" aria-hidden="true"></span></span></div>
     </div>
 
     <div class="actions">
@@ -185,18 +191,71 @@ footer { font-family: var(--mono); font-size: 12.5px; color: var(--muted); displ
     </div>
   </div>
 
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="sec-head">
+      <p class="label">What I do</p>
+      <h2 id="skills-h">Two sides of the same job</h2>
+    </div>
+    <div class="pair">
+      <div class="card">
+        <p class="label">Software engineering</p>
+        <h3>Build it</h3>
+        <p>Full-stack web apps, REST APIs and the infrastructure they run on, designed to be readable, tested and deployable.</p>
+        <dl class="skills">
+          <dt>Languages</dt><dd>Java, TypeScript, JavaScript, Python, C#, C, SQL</dd>
+          <dt>Backend</dt><dd>Spring Boot, Node.js + Express, Django, .NET</dd>
+          <dt>Frontend</dt><dd>React, Vite, installable offline web apps</dd>
+          <dt>Data &amp; cloud</dt><dd>PostgreSQL, Docker, Terraform, AWS (ECS Fargate, RDS, CloudFront), Databricks</dd>
+        </dl>
+      </div>
+      <div class="card">
+        <p class="label">Quality engineering</p>
+        <h3>Prove it works</h3>
+        <p>Test strategy and automation at every layer, from unit tests to load tests, wired into CI so failures show up before release.</p>
+        <dl class="skills">
+          <dt>Automation</dt><dd>JUnit 5, Mockito, Rest Assured, Cucumber, Playwright, Selenium</dd>
+          <dt>API &amp; load</dt><dd>Postman/Newman, JSON Schema contracts, Gatling</dd>
+          <dt>Security</dt><dd>OWASP ZAP, Trivy, npm audit, dependency review</dd>
+          <dt>CI &amp; reporting</dt><dd>GitHub Actions, Allure, JaCoCo, axe-core</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
   <section id="work" aria-labelledby="work-h">
     <div class="sec-head">
       <p class="label">Selected work</p>
-      <h2 id="work-h">Built end to end, tested the way a bank would test it</h2>
+      <h2 id="work-h">Software I've built, and how I made sure it works</h2>
     </div>
 
     <div>
       <article class="feature">
         <div class="text">
-          <p class="label">Java 21 · Spring Boot · QE framework</p>
+          <p class="label">Full stack · TypeScript · React · Node · AWS</p>
+          <h3>Secure Test Results Dashboard</h3>
+          <p>A full-stack web app: a React and TypeScript frontend with hand-built SVG charts, an Express API with input validation and rate limiting, PostgreSQL, and infrastructure on AWS defined in Terraform. Teams upload a JUnit XML report from any CI job and see pass-rate trends, flaky tests, slow tests and failure output. Its own pipeline runs OWASP ZAP, Trivy and dependency scans as blocking gates, and every finding and its fix is written up in the repo.</p>
+          <ul class="facts">
+            <li>React + Express + Postgres</li>
+            <li>Terraform on ECS Fargate</li>
+            <li>ZAP findings: 4 → 0</li>
+            <li>distroless, non-root image</li>
+          </ul>
+          <ul class="stack">
+            <li>React 19</li><li>Express 5</li><li>PostgreSQL 16</li><li>Terraform</li><li>ECS Fargate</li><li>CloudFront + WAF</li><li>OWASP ZAP</li><li>Trivy</li>
+          </ul>
+          <div class="links">
+            <a href="https://github.com/suhaibsdkhan/secure-test-dashboard" target="_blank" rel="noopener">Source</a>
+            <a href="https://github.com/suhaibsdkhan/secure-test-dashboard/blob/main/docs/security-findings.md" target="_blank" rel="noopener">Security findings write-up</a>
+          </div>
+        </div>
+        <div class="shot"><img src="img/dashboard.png" alt="Dashboard view of the ZAP baseline suite going from four failing checks to clean" loading="lazy"></div>
+      </article>
+
+      <article class="feature">
+        <div class="text">
+          <p class="label">Java 21 · Spring Boot API · test framework</p>
           <h3>Harbour Bank QE Framework</h3>
-          <p>A full test automation framework for a small banking system, with the system under test included: a Spring Boot banking API and web UI, so every layer gets tested for real. REST contracts, business rules, the double-entry ledger, the browser and concurrency are all covered, and CI publishes one merged Allure report on every push.</p>
+          <p>A Spring Boot banking API and web UI with transfers, a double-entry ledger and safe concurrent withdrawals, plus the test automation framework a bank's QE team would build around it. Tests cover REST contracts, business rules, the database, the browser and concurrency, and CI publishes one merged Allure report on every push.</p>
           <ul class="facts">
             <li>~100 checks per push</li>
             <li>99% line coverage</li>
@@ -214,40 +273,21 @@ footer { font-family: var(--mono); font-size: 12.5px; color: var(--muted); displ
         </div>
         <div class="shot"><img src="img/harbour.png" alt="Harbour Bank web UI showing accounts and a transfer form" loading="lazy"></div>
       </article>
-
-      <article class="feature">
-        <div class="text">
-          <p class="label">TypeScript · React · Node · AWS</p>
-          <h3>Secure Test Results Dashboard</h3>
-          <p>Upload a JUnit XML report from any CI job and see pass-rate trends, flaky tests, slow tests and failure output. It tracks Harbour Bank's suites and its own pipeline, where OWASP ZAP, Trivy and dependency scans run as blocking gates, so the dashboard shows its own security posture over time. Every finding and its fix is written up in the repo.</p>
-          <ul class="facts">
-            <li>ZAP findings: 4 → 0</li>
-            <li>distroless, non-root image</li>
-            <li>OIDC deploy, no stored keys</li>
-          </ul>
-          <ul class="stack">
-            <li>React 19</li><li>Express 5</li><li>PostgreSQL 16</li><li>Terraform</li><li>ECS Fargate</li><li>CloudFront + WAF</li><li>OWASP ZAP</li><li>Trivy</li>
-          </ul>
-          <div class="links">
-            <a href="https://github.com/suhaibsdkhan/secure-test-dashboard" target="_blank" rel="noopener">Source</a>
-            <a href="https://github.com/suhaibsdkhan/secure-test-dashboard/blob/main/docs/security-findings.md" target="_blank" rel="noopener">Security findings write-up</a>
-          </div>
-        </div>
-        <div class="shot"><img src="img/dashboard.png" alt="Dashboard view of the ZAP baseline suite going from four failing checks to clean" loading="lazy"></div>
-      </article>
     </div>
 
     <div class="pair">
       <article class="card">
         <p class="label">Python · Django · Postgres</p>
         <h3>SettleUp</h3>
-        <p>A Splitwise-style app for splitting bills with friends. Split equally, by exact amounts, percentages or shares, across multiple payers and currencies. The debt simplifier shows its working step by step and checks that nobody's total changed. All money math is done in integer cents.</p>
+        <p>A Splitwise-style web app for splitting bills with friends, with accounts, groups, invites and CSV export. Split equally, by exact amounts, percentages or shares, across multiple payers and currencies. The debt simplifier shows its working step by step and checks that nobody's total changed. All money math is done in integer cents.</p>
+        <ul class="facts"><li>debt simplification algorithm</li><li>deploys on Render</li></ul>
         <div class="links"><a href="https://github.com/suhaibsdkhan/SettleUp" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="card">
         <p class="label">JavaScript · PWA · offline</p>
         <h3>Spendly</h3>
         <p>A personal expense tracker that installs as an app and works offline. Monthly budgets by category, and an importer that reads Scotiabank credit card statement PDFs on the device, matches refunds to purchases and never double-counts overlapping statements. Nothing leaves the browser.</p>
+        <ul class="facts"><li>installable PWA</li><li>auto-deploys to GitHub Pages</li></ul>
         <div class="links">
           <a href="https://suhaibsdkhan.github.io/Spendly-/" target="_blank" rel="noopener">Open the app</a>
           <a href="https://github.com/suhaibsdkhan/Spendly-" target="_blank" rel="noopener">Source</a>
@@ -316,7 +356,7 @@ footer { font-family: var(--mono); font-size: 12.5px; color: var(--muted); displ
           <h3>Quality Engineer Intern</h3>
           <p class="org">Ontario Teachers' Pension Plan · Toronto</p>
           <ul>
-            <li>Tested across the stack alongside both frontend and backend development teams.</li>
+            <li>Worked with both frontend and backend development teams to test features across the stack, from UI flows to APIs and data.</li>
             <li>Built Databricks evaluation pipelines for automated and AI-assisted workflows, bringing AI tools into the team's testing process.</li>
           </ul>
         </div>
@@ -350,7 +390,7 @@ footer { font-family: var(--mono); font-size: 12.5px; color: var(--muted); displ
 
   <section id="contact" class="contact" aria-labelledby="contact-h">
     <p class="label">Contact</p>
-    <h2 id="contact-h">Hiring for 2027? Let's talk.</h2>
+    <h2 id="contact-h">Hiring software or quality engineers for 2027? Let's talk.</h2>
     <div class="addr">
       <code id="email">khansuhaib33@gmail.com</code>
       <button class="btn" id="copy-btn" type="button">Copy email</button>
