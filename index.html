@@ -62,10 +62,13 @@ h1, h2, h3 { margin: 0; font-weight: 700; text-wrap: balance; }
   line-height: 0.88; letter-spacing: -0.035em;
 }
 .hero h1 .last { display: block; }
-.hero .intro { grid-column: 4 / 11; font-size: clamp(1.25rem, 2.1vw, 1.6rem); line-height: 1.35; max-width: 34ch; margin: 0; }
+.hero .lead { grid-column: 4 / 11; display: grid; gap: 28px; align-content: start; min-width: 0; }
+.hero .intro { font-size: clamp(1.25rem, 2.1vw, 1.6rem); line-height: 1.35; max-width: 34ch; margin: 0; }
 .hero .meta { grid-column: 1 / 4; color: var(--muted); align-self: start; padding-top: 6px; }
 .hero .meta p { margin: 0 0 4px; }
-.hero .links { grid-column: 4 / 13; display: flex; flex-wrap: wrap; gap: 8px 28px; font-weight: 500; }
+.hero .links { display: flex; flex-wrap: wrap; gap: 8px 28px; font-weight: 500; }
+.portrait { margin: 0 0 18px; border: 1px solid var(--ink); max-width: 100%; aspect-ratio: 4 / 5; overflow: hidden; background: #e6e3dd; }
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .redline { grid-column: 1 / 2; height: 6px; background: var(--red); align-self: end; margin-bottom: 18px; }
 
 /* Sections */
@@ -137,10 +140,11 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
 .grid-overlay span { background: rgba(179, 38, 30, 0.07); border-left: 1px solid rgba(179, 38, 30, 0.25); border-right: 1px solid rgba(179, 38, 30, 0.25); }
 
 @media (max-width: 860px) {
-  .lab, .con, .bar .who, .bar nav, .hero .intro, .hero .meta, .hero .links { grid-column: 1 / 13; }
+  .lab, .con, .bar .who, .bar nav, .hero .lead, .hero .meta { grid-column: 1 / 13; }
   .bar { row-gap: 10px; }
   .hero { padding-block: 48px; row-gap: 26px; }
   .redline { grid-column: 1 / 4; margin-bottom: 0; }
+  .portrait { width: min(220px, 60%); }
   section { padding-block: 44px; }
   section > .g { row-gap: 24px; }
   .skills, .split { grid-template-columns: 1fr; }
@@ -183,15 +187,20 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
     <h1>Suhaib <span class="last">Sadeque Khan</span></h1>
     <div class="redline" aria-hidden="true"></div>
     <div class="meta mono">
+      <figure class="portrait">
+        <img src="img/suhaib.jpg" alt="Portrait of Suhaib Sadeque Khan" width="560" height="700">
+      </figure>
       <p>Software engineering</p>
       <p>Quality engineering</p>
       <p>Toronto / Kingston, ON</p>
     </div>
-    <p class="intro">I build full-stack apps and APIs, and the test automation that proves they work. Looking for 2027 new-grad roles in software and quality engineering.</p>
-    <div class="links">
-      <a href="#work">Selected work</a>
-      <a href="https://github.com/suhaibsdkhan" target="_blank" rel="noopener">GitHub</a>
-      <a href="#contact">Email</a>
+    <div class="lead">
+      <p class="intro">I build full-stack apps and APIs, and the test automation that proves they work. Looking for 2027 new-grad roles in software and quality engineering.</p>
+      <div class="links">
+        <a href="#work">Selected work</a>
+        <a href="https://github.com/suhaibsdkhan" target="_blank" rel="noopener">GitHub</a>
+        <a href="#contact">Email</a>
+      </div>
     </div>
   </div>
 
