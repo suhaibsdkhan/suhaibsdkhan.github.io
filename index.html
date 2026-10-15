@@ -7,406 +7,408 @@
 <meta name="description" content="Suhaib Sadeque Khan: software engineer and quality engineer. Computing at Queen's University.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: a single reading column that opens like a test-run summary, then featured work as wide case studies, smaller repos as a ledger, then experience and contact. */
+/* Layout: Swiss/International typographic page on a 12-column grid. Section labels sit in columns 1-3, content in 4-12; projects are a ruled index of spec sheets. Light only, one red accent. */
 :root {
-  --bg: #eef1f4;
-  --surface: #ffffff;
-  --ink: #0f1a26;
-  --muted: #536173;
-  --line: #d3dae2;
-  --accent: #1d5fb4;
-  --accent-soft: #dfe9f6;
-  --pass: #1e7a4c;
-  --pass-soft: #dcefe4;
-  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --paper: #f4f2ee;
+  --ink: #111111;
+  --muted: #555555;
+  --rule: #d0ccc4;
+  --red: #b3261e;
+  --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --maxw: 1240px;
+  color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0d141c; --surface: #141e29; --ink: #e6edf4; --muted: #92a1b3; --line: #253242;
-    --accent: #7fb0ee; --accent-soft: #1a2b40; --pass: #6fcf9b; --pass-soft: #163327; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0d141c; --surface: #141e29; --ink: #e6edf4; --muted: #92a1b3; --line: #253242;
-  --accent: #7fb0ee; --accent-soft: #1a2b40; --pass: #6fcf9b; --pass-soft: #163327; color-scheme: dark;
-}
-
 * { box-sizing: border-box; }
-html { color-scheme: light; }
 body { margin: 0; }
 img { max-width: 100%; }
+[hidden] { display: none !important; }
 body {
-  background: var(--bg); color: var(--ink);
-  font-family: var(--body); font-size: 16px; line-height: 1.6;
+  background: var(--paper); color: var(--ink);
+  font-family: var(--sans); font-size: 17px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.page, .grid-overlay > div {
+  max-width: var(--maxw); margin: 0 auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-a { color: var(--accent); text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-.wrap { max-width: 980px; margin: 0 auto; padding-block: 56px 72px; display: grid; gap: 88px; }
+.g { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; }
+.lab { grid-column: 1 / 4; }
+.con { grid-column: 4 / 13; min-width: 0; }
 
-h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
-.label { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0; }
-.mono { font-family: var(--mono); }
+a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+a:hover { color: var(--red); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.mono { font-family: var(--mono); font-size: 13.5px; letter-spacing: 0; }
+h1, h2, h3 { margin: 0; font-weight: 700; text-wrap: balance; }
 
-/* Header */
-.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.top nav { display: flex; gap: 20px; flex-wrap: wrap; font-size: 14px; }
-.top nav a { color: var(--muted); text-decoration: none; }
-.top nav a:hover { color: var(--ink); }
-.handle { font-family: var(--mono); font-size: 14px; color: var(--muted); }
+/* Top bar */
+.bar { padding-block: 22px; border-bottom: 1px solid var(--ink); align-items: baseline; }
+.bar .who { grid-column: 1 / 4; font-weight: 600; }
+.bar nav { grid-column: 4 / 13; display: flex; gap: 28px; flex-wrap: wrap; }
+.bar nav a { text-decoration: none; }
+.bar nav a:hover { color: var(--ink); box-shadow: inset 0 -2px 0 var(--red); }
+#grid-btn { margin-left: auto; background: none; border: 0; padding: 0; cursor: pointer; color: var(--muted); font: inherit; }
+#grid-btn:hover { color: var(--red); }
 
 /* Hero */
-.hero { display: grid; gap: 28px; }
-.hero h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1.02; font-weight: 800; }
-.hero h1 span { color: var(--accent); }
-.lede { font-size: 1.2rem; max-width: 60ch; color: var(--ink); margin: 0; }
-.lede em { font-style: normal; color: var(--muted); }
-
-.run {
-  font-family: var(--mono); font-size: 13.5px; background: var(--surface);
-  border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px;
-  display: grid; gap: 6px; overflow-x: auto;
+.hero { padding-block: 72px 64px; row-gap: 36px; }
+.hero h1 {
+  grid-column: 1 / 13;
+  font-size: clamp(3.3rem, 11.5vw, 9.6rem); font-stretch: 72%; font-weight: 800;
+  line-height: 0.88; letter-spacing: -0.035em;
 }
-.run .row { display: flex; gap: 12px; white-space: nowrap; }
-.run .k { color: var(--muted); min-width: 13ch; }
-.ok { color: var(--pass); }
-.run .cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); vertical-align: -2px; animation: blink 1.1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .run .cursor { animation: none; } }
-
-.actions { display: flex; gap: 12px; flex-wrap: wrap; }
-.btn {
-  font: 500 15px var(--body); padding: 10px 18px; border-radius: 8px; text-decoration: none;
-  border: 1px solid var(--line); color: var(--ink); background: var(--surface); cursor: pointer;
-}
-.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.hero h1 .last { display: block; }
+.hero .intro { grid-column: 4 / 11; font-size: clamp(1.25rem, 2.1vw, 1.6rem); line-height: 1.35; max-width: 34ch; margin: 0; }
+.hero .meta { grid-column: 1 / 4; color: var(--muted); align-self: start; padding-top: 6px; }
+.hero .meta p { margin: 0 0 4px; }
+.hero .links { grid-column: 4 / 13; display: flex; flex-wrap: wrap; gap: 8px 28px; font-weight: 500; }
+.redline { grid-column: 1 / 2; height: 6px; background: var(--red); align-self: end; margin-bottom: 18px; }
 
 /* Sections */
-section { display: grid; gap: 28px; }
-.sec-head { display: grid; gap: 6px; }
-.sec-head h2 { font-size: clamp(1.7rem, 3.6vw, 2.3rem); font-weight: 700; }
+section { padding-block: 56px; border-top: 1px solid var(--ink); }
+.lab h2 { font-size: 1.75rem; font-stretch: 85%; line-height: 1.1; letter-spacing: -0.01em; }
+.lab p { margin: 10px 0 0; color: var(--muted); font-size: 15px; max-width: 24ch; }
 
-/* Featured projects */
-.feature {
-  display: grid; grid-template-columns: 1.05fr 1fr; gap: 32px; align-items: start;
-  padding-block: 32px; border-top: 1px solid var(--line);
-}
-.feature:last-child { border-bottom: 1px solid var(--line); }
-.feature .text { display: grid; gap: 14px; min-width: 0; }
-.feature h3 { font-size: 1.6rem; font-weight: 700; }
-.feature p { margin: 0; color: var(--muted); }
-.feature .shot {
-  border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface);
-  aspect-ratio: 4 / 3; max-width: 100%;
-}
-.feature .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
-.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.facts li { font-family: var(--mono); font-size: 12.5px; padding: 4px 9px; border-radius: 6px; background: var(--pass-soft); color: var(--pass); font-variant-numeric: tabular-nums; }
-.stack { display: flex; flex-wrap: wrap; gap: 6px 14px; font-family: var(--mono); font-size: 13px; color: var(--muted); margin: 0; padding: 0; list-style: none; }
-.links { display: flex; gap: 18px; flex-wrap: wrap; font-size: 15px; font-weight: 500; }
+/* Skills */
+.skills { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+.skills > div { min-width: 0; }
+.skills h3 { font-size: 1.35rem; font-stretch: 85%; padding-bottom: 10px; border-bottom: 1px solid var(--ink); }
+.skills h3 span { font-weight: 400; color: var(--muted); }
+.kv { display: grid; grid-template-columns: 9.5rem 1fr; margin: 0; }
+.kv dt, .kv dd { padding-block: 9px; border-bottom: 1px solid var(--rule); margin: 0; }
+.kv dt { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 11px; }
+.kv dd { min-width: 0; }
 
-/* Compact feature (no screenshot) */
-.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px; display: grid; gap: 12px; align-content: start; min-width: 0; }
-.card h3 { font-size: 1.35rem; font-weight: 700; }
-.card p { margin: 0; color: var(--muted); }
-.skills { display: grid; grid-template-columns: max-content 1fr; gap: 8px 16px; margin: 4px 0 0; font-size: 15px; }
-.skills dt { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding-top: 2px; }
-.skills dd { margin: 0; min-width: 0; }
-@media (max-width: 420px) { .skills { grid-template-columns: 1fr; gap: 2px; } .skills dd { margin-bottom: 8px; } }
+/* Project index */
+.proj { padding-block: 40px; border-top: 1px solid var(--rule); display: grid; gap: 10px; }
+.proj:first-child { border-top: 0; padding-top: 0; }
+.proj .when { color: var(--muted); }
+.proj .when b { color: var(--ink); font-weight: 500; margin-right: 10px; }
+.proj .body { display: grid; gap: 18px; min-width: 0; }
+.proj h3 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-stretch: 80%; line-height: 1; letter-spacing: -0.02em; }
+.proj .what { margin: 0; max-width: 62ch; }
+.proj .spec dt:first-of-type, .proj .spec dd:first-of-type { border-top: 1px solid var(--ink); }
+.proj .spec .pass::before { content: "✓ "; color: var(--red); font-weight: 600; }
+.proj .spec dd a { margin-right: 18px; }
+.stackcol { display: grid; gap: 18px; min-width: 0; }
+.split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px; align-items: start; }
+figure { margin: 0; min-width: 0; }
+.shot { border: 1px solid var(--ink); background: #ffffff; aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; }
+.shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+figcaption { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 8px; }
 
-/* Ledger of smaller repos */
-.ledger { width: 100%; border-collapse: collapse; font-size: 15px; }
-.ledger-wrap { overflow-x: auto; }
-.ledger td { padding: 14px 12px 14px 0; border-top: 1px solid var(--line); vertical-align: top; }
-.ledger tr:last-child td { border-bottom: 1px solid var(--line); }
-.ledger .name a { font-weight: 600; color: var(--ink); text-decoration: none; }
-.ledger .name a:hover { color: var(--accent); }
-.ledger .desc { color: var(--muted); }
-.ledger .lang { font-family: var(--mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; text-align: right; padding-right: 0; }
+/* Other work */
+.index { width: 100%; border-collapse: collapse; }
+.index td { padding: 13px 16px 13px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.index tr:first-child td { border-top: 1px solid var(--ink); }
+.index .t { font-weight: 600; width: 30%; }
+.index .t a { text-decoration: none; }
+.index .d { color: var(--muted); }
+.index .s { font-family: var(--mono); font-size: 13px; color: var(--muted); white-space: nowrap; text-align: right; padding-right: 0; }
 
 /* Experience */
-.timeline { display: grid; gap: 0; }
-.entry { display: grid; grid-template-columns: 190px 1fr; gap: 24px; padding-block: 22px; border-top: 1px solid var(--line); }
-.entry:last-child { border-bottom: 1px solid var(--line); }
-.entry .when { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 4px; }
-.entry h3 { font-size: 1.2rem; font-weight: 700; }
-.entry .org { color: var(--muted); margin: 2px 0 10px; }
-.entry ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.xp { display: grid; grid-template-columns: 11rem 1fr; margin: 0; }
+.xp > * { padding-block: 16px; border-bottom: 1px solid var(--rule); margin: 0; }
+.xp dt { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 20px; }
+.xp dd { min-width: 0; }
+.xp dt:first-of-type, .xp dd:first-of-type { border-top: 1px solid var(--ink); }
+.xp h3 { font-size: 1.2rem; }
+.xp .org { color: var(--muted); margin: 2px 0 0; }
+.xp ul { margin: 10px 0 0; padding-left: 1.1em; }
+.xp li + li { margin-top: 4px; }
 
 /* Contact */
-.contact { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 32px; display: grid; gap: 18px; }
-.contact h2 { font-size: clamp(1.7rem, 3.6vw, 2.3rem); }
-.contact .addr { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.contact .addr code { font-family: var(--mono); font-size: 15px; background: var(--accent-soft); color: var(--ink); padding: 8px 12px; border-radius: 6px; user-select: all; word-break: break-all; }
-#copy-status { font-size: 14px; color: var(--pass); min-height: 1.4em; }
+.mail { font-size: clamp(1.6rem, 4.6vw, 3.4rem); font-stretch: 78%; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; word-break: break-all; user-select: all; margin: 0; }
+.contact-row { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; margin-top: 22px; }
+#copy-btn { font: 500 15px var(--sans); background: var(--ink); color: var(--paper); border: 0; padding: 10px 18px; cursor: pointer; }
+#copy-btn:hover { background: var(--red); }
+#copy-status { color: var(--muted); min-height: 1.4em; margin-top: 10px; }
 
-footer { font-family: var(--mono); font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+footer { padding-block: 22px 40px; border-top: 1px solid var(--ink); color: var(--muted); row-gap: 6px; }
+footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
 
-@media (max-width: 760px) {
-  .wrap { gap: 64px; padding-block: 32px 48px; }
-  .feature, .pair { grid-template-columns: 1fr; }
-  .feature .shot { order: -1; }
-  .entry { grid-template-columns: 1fr; gap: 6px; }
-  .ledger .lang { display: none; }
+/* Grid overlay (press G) */
+.grid-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
+.grid-overlay > div, .grid-overlay .g { height: 100%; }
+.grid-overlay span { background: rgba(179, 38, 30, 0.07); border-left: 1px solid rgba(179, 38, 30, 0.25); border-right: 1px solid rgba(179, 38, 30, 0.25); }
+
+@media (max-width: 860px) {
+  .lab, .con, .bar .who, .bar nav, .hero .intro, .hero .meta, .hero .links { grid-column: 1 / 13; }
+  .bar { row-gap: 10px; }
+  .hero { padding-block: 48px; row-gap: 26px; }
+  .redline { grid-column: 1 / 4; margin-bottom: 0; }
+  section { padding-block: 44px; }
+  section > .g { row-gap: 24px; }
+  .skills, .split { grid-template-columns: 1fr; }
+  .skills { gap: 32px; }
+  .index .s { display: none; }
+  .index .t { width: 38%; }
 }
+@media (max-width: 480px) {
+  .kv, .xp { grid-template-columns: 1fr; }
+  .kv dt, .xp dt { border-bottom: 0; padding-bottom: 0; }
+  .proj .spec dd:first-of-type, .xp dd:first-of-type { border-top: 0; }
+  .index, .index tbody, .index tr, .index td { display: block; width: auto; }
+  .index td { border-bottom: 0; padding: 0; }
+  .index .t { width: auto; }
+  .index tr { padding-block: 12px; border-bottom: 1px solid var(--rule); }
+  .index tr:first-child td { border-top: 0; }
+  .index tr:first-child { border-top: 1px solid var(--ink); }
+  #grid-btn { margin-left: 0; }
+}
+@media (prefers-reduced-motion: no-preference) { a, #copy-btn { transition: color .15s, background-color .15s; } }
 </style>
 
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <span class="handle">suhaibsdkhan</span>
+<div class="grid-overlay" id="grid-overlay" hidden aria-hidden="true"><div><div class="g"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div></div>
+
+<div class="page">
+  <header class="bar g">
+    <span class="who">Suhaib Sadeque Khan</span>
     <nav aria-label="Sections">
-      <a href="#skills">Skills</a>
       <a href="#work">Work</a>
-      <a href="#more">More projects</a>
+      <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
+      <button id="grid-btn" class="mono" type="button" aria-pressed="false">Show grid (G)</button>
     </nav>
   </header>
 
-  <div class="hero">
-    <p class="label">Computing · Queen's University · Kingston, ON</p>
-    <h1>Suhaib Sadeque Khan.<br>I build software, <span>and the tests that prove it works.</span></h1>
-    <p class="lede">Software engineer and quality engineer, studying Computing at Queen's with a cybersecurity focus. I build full-stack apps and APIs in Java, TypeScript and Python, and I design the automation, CI pipelines and security gates that keep them reliable. <em>Looking for 2027 new-grad roles in software engineering and quality engineering.</em></p>
-
-    <div class="run" role="img" aria-label="Summary in the style of a test run: open to 2027 new-grad software engineering and quality engineering roles; builds full-stack apps and test automation in Java, TypeScript, Python, C# and C.">
-      <div class="row"><span class="k">$ suite</span><span>portfolio --all</span></div>
-      <div class="row"><span class="k">roles</span><span>software engineering · quality engineering</span></div>
-      <div class="row"><span class="k">builds</span><span>full-stack web apps · REST APIs · cloud infra on AWS</span></div>
-      <div class="row"><span class="k">verifies</span><span>test automation · performance · AppSec in CI/CD</span></div>
-      <div class="row"><span class="k">languages</span><span>Java · TypeScript · Python · C# · C</span></div>
-      <div class="row"><span class="k">status</span><span><span class="ok">✓ open to 2027 new-grad roles</span> <span class="cursor" aria-hidden="true"></span></span></div>
+  <div class="hero g">
+    <h1>Suhaib <span class="last">Sadeque Khan</span></h1>
+    <div class="redline" aria-hidden="true"></div>
+    <div class="meta mono">
+      <p>Software engineering</p>
+      <p>Quality engineering</p>
+      <p>Toronto / Kingston, ON</p>
     </div>
-
-    <div class="actions">
-      <a class="btn primary" href="#work">See the work</a>
-      <a class="btn" href="https://github.com/suhaibsdkhan" target="_blank" rel="noopener">GitHub</a>
+    <p class="intro">I build full-stack apps and APIs, and the test automation that proves they work. Looking for 2027 new-grad roles in software and quality engineering.</p>
+    <div class="links">
+      <a href="#work">Selected work</a>
+      <a href="https://github.com/suhaibsdkhan" target="_blank" rel="noopener">GitHub</a>
+      <a href="#contact">Email</a>
     </div>
   </div>
 
-  <section id="skills" aria-labelledby="skills-h">
-    <div class="sec-head">
-      <p class="label">What I do</p>
-      <h2 id="skills-h">Two sides of the same job</h2>
-    </div>
-    <div class="pair">
-      <div class="card">
-        <p class="label">Software engineering</p>
-        <h3>Build it</h3>
-        <p>Full-stack web apps, REST APIs and the infrastructure they run on, designed to be readable, tested and deployable.</p>
-        <dl class="skills">
-          <dt>Languages</dt><dd>Java, TypeScript, JavaScript, Python, C#, C, SQL</dd>
-          <dt>Backend</dt><dd>Spring Boot, Node.js + Express, Django, .NET</dd>
-          <dt>Frontend</dt><dd>React, Vite, installable offline web apps</dd>
-          <dt>Data &amp; cloud</dt><dd>PostgreSQL, Docker, Terraform, AWS (ECS Fargate, RDS, CloudFront), Databricks</dd>
-        </dl>
-      </div>
-      <div class="card">
-        <p class="label">Quality engineering</p>
-        <h3>Prove it works</h3>
-        <p>Test strategy and automation at every layer, from unit tests to load tests, wired into CI so failures show up before release.</p>
-        <dl class="skills">
-          <dt>Automation</dt><dd>JUnit 5, Mockito, Rest Assured, Cucumber, Playwright, Selenium</dd>
-          <dt>API &amp; load</dt><dd>Postman/Newman, JSON Schema contracts, Gatling</dd>
-          <dt>Security</dt><dd>OWASP ZAP, Trivy, npm audit, dependency review</dd>
-          <dt>CI &amp; reporting</dt><dd>GitHub Actions, Allure, JaCoCo, axe-core</dd>
-        </dl>
-      </div>
-    </div>
-  </section>
-
   <section id="work" aria-labelledby="work-h">
-    <div class="sec-head">
-      <p class="label">Selected work</p>
-      <h2 id="work-h">Software I've built, and how I made sure it works</h2>
-    </div>
+    <div class="g">
+      <div class="lab">
+        <h2 id="work-h">Selected work</h2>
+        <p>Each project lists what it is built with, how it is tested and what the tests show.</p>
+      </div>
+      <div class="con">
 
-    <div>
-      <article class="feature">
-        <div class="text">
-          <p class="label">Full stack · TypeScript · React · Node · AWS</p>
-          <h3>Secure Test Results Dashboard</h3>
-          <p>A full-stack web app: a React and TypeScript frontend with hand-built SVG charts, an Express API with input validation and rate limiting, PostgreSQL, and infrastructure on AWS defined in Terraform. Teams upload a JUnit XML report from any CI job and see pass-rate trends, flaky tests, slow tests and failure output. Its own pipeline runs OWASP ZAP, Trivy and dependency scans as blocking gates, and every finding and its fix is written up in the repo.</p>
-          <ul class="facts">
-            <li>React + Express + Postgres</li>
-            <li>Terraform on ECS Fargate</li>
-            <li>ZAP findings: 4 → 0</li>
-            <li>distroless, non-root image</li>
-          </ul>
-          <ul class="stack">
-            <li>React 19</li><li>Express 5</li><li>PostgreSQL 16</li><li>Terraform</li><li>ECS Fargate</li><li>CloudFront + WAF</li><li>OWASP ZAP</li><li>Trivy</li>
-          </ul>
-          <div class="links">
-            <a href="https://github.com/suhaibsdkhan/secure-test-dashboard" target="_blank" rel="noopener">Source</a>
-            <a href="https://github.com/suhaibsdkhan/secure-test-dashboard/blob/main/docs/security-findings.md" target="_blank" rel="noopener">Security findings write-up</a>
+        <article class="proj">
+          <div class="when mono"><b>2026</b>Full-stack web app</div>
+          <div class="body">
+            <h3>Secure Test Results Dashboard</h3>
+            <div class="split">
+              <div class="stackcol">
+                <p class="what">Teams upload a JUnit XML report from any CI job and see pass-rate trends, flaky tests, slow tests and failure output. It runs on AWS, and its own pipeline treats security scans as blocking gates.</p>
+                <dl class="kv spec">
+                  <dt>Frontend</dt><dd>React 19, TypeScript, Vite, hand-built SVG charts</dd>
+                  <dt>Backend</dt><dd>Node 22, Express 5, zod validation, rate limiting, PostgreSQL 16</dd>
+                  <dt>Infra</dt><dd>Terraform: ECS Fargate, RDS, ALB, CloudFront, WAF; distroless non-root image</dd>
+                  <dt>Tested with</dt><dd>Unit and API integration tests, OWASP ZAP, Trivy, npm audit</dd>
+                  <dt>Result</dt><dd class="pass">ZAP baseline went from 4 failing checks to clean; each fix is pinned by a regression test</dd>
+                  <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/secure-test-dashboard" target="_blank" rel="noopener">Repository</a><a href="https://github.com/suhaibsdkhan/secure-test-dashboard/blob/main/docs/security-findings.md" target="_blank" rel="noopener">Security findings</a></dd>
+                </dl>
+              </div>
+              <figure>
+                <div class="shot"><img src="img/dashboard.png" alt="The ZAP baseline suite on the dashboard, failing until the security fixes landed and clean afterwards" loading="lazy"></div>
+                <figcaption>ZAP baseline suite, before and after the fixes</figcaption>
+              </figure>
+            </div>
           </div>
-        </div>
-        <div class="shot"><img src="img/dashboard.png" alt="Dashboard view of the ZAP baseline suite going from four failing checks to clean" loading="lazy"></div>
-      </article>
+        </article>
 
-      <article class="feature">
-        <div class="text">
-          <p class="label">Java 21 · Spring Boot API · test framework</p>
-          <h3>Harbour Bank QE Framework</h3>
-          <p>A Spring Boot banking API and web UI with transfers, a double-entry ledger and safe concurrent withdrawals, plus the test automation framework a bank's QE team would build around it. Tests cover REST contracts, business rules, the database, the browser and concurrency, and CI publishes one merged Allure report on every push.</p>
-          <ul class="facts">
-            <li>~100 checks per push</li>
-            <li>99% line coverage</li>
-            <li>p95 &lt; 500 ms under load</li>
-            <li>no overdraft under parallel withdrawals</li>
-          </ul>
-          <ul class="stack">
-            <li>JUnit 5</li><li>Rest Assured</li><li>Cucumber</li><li>Playwright</li><li>Selenium</li><li>Gatling</li><li>Postman/Newman</li><li>axe-core</li><li>Docker</li><li>GitHub Actions</li>
-          </ul>
-          <div class="links">
-            <a href="https://github.com/suhaibsdkhan/Harbour-bank-qe-framework" target="_blank" rel="noopener">Source</a>
-            <a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/" target="_blank" rel="noopener">Live Allure report</a>
-            <a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/performance/" target="_blank" rel="noopener">Load test</a>
+        <article class="proj">
+          <div class="when mono"><b>2026</b>API + test framework</div>
+          <div class="body">
+            <h3>Harbour Bank QE Framework</h3>
+            <div class="split">
+              <div class="stackcol">
+                <p class="what">A Spring Boot banking API and web UI with transfers, a double-entry ledger and safe concurrent withdrawals, plus the test automation framework a bank's QE team would build around it.</p>
+                <dl class="kv spec">
+                  <dt>Built with</dt><dd>Java 21, Spring Boot 3.5, PostgreSQL, Docker</dd>
+                  <dt>Tested with</dt><dd>JUnit 5, Mockito, Rest Assured, Cucumber, Playwright, Selenium, Postman/Newman, Gatling, axe-core</dd>
+                  <dt>CI</dt><dd>GitHub Actions, five parallel jobs, one merged Allure report per push</dd>
+                  <dt>Result</dt><dd class="pass">About 100 checks per push; 99% line and 92% branch coverage; load test held p95 under 500 ms</dd>
+                  <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/Harbour-bank-qe-framework" target="_blank" rel="noopener">Repository</a><a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/" target="_blank" rel="noopener">Allure report</a><a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/performance/" target="_blank" rel="noopener">Load test</a></dd>
+                </dl>
+              </div>
+              <figure>
+                <div class="shot"><img src="img/harbour.png" alt="Harbour Bank web UI with accounts and a transfer form" loading="lazy"></div>
+                <figcaption>Harbour Bank web UI, driven by Playwright and Selenium</figcaption>
+              </figure>
+            </div>
           </div>
-        </div>
-        <div class="shot"><img src="img/harbour.png" alt="Harbour Bank web UI showing accounts and a transfer form" loading="lazy"></div>
-      </article>
-    </div>
+        </article>
 
-    <div class="pair">
-      <article class="card">
-        <p class="label">Python · Django · Postgres</p>
-        <h3>SettleUp</h3>
-        <p>A Splitwise-style web app for splitting bills with friends, with accounts, groups, invites and CSV export. Split equally, by exact amounts, percentages or shares, across multiple payers and currencies. The debt simplifier shows its working step by step and checks that nobody's total changed. All money math is done in integer cents.</p>
-        <ul class="facts"><li>debt simplification algorithm</li><li>deploys on Render</li></ul>
-        <div class="links"><a href="https://github.com/suhaibsdkhan/SettleUp" target="_blank" rel="noopener">Source</a></div>
-      </article>
-      <article class="card">
-        <p class="label">JavaScript · PWA · offline</p>
-        <h3>Spendly</h3>
-        <p>A personal expense tracker that installs as an app and works offline. Monthly budgets by category, and an importer that reads Scotiabank credit card statement PDFs on the device, matches refunds to purchases and never double-counts overlapping statements. Nothing leaves the browser.</p>
-        <ul class="facts"><li>installable PWA</li><li>auto-deploys to GitHub Pages</li></ul>
-        <div class="links">
-          <a href="https://suhaibsdkhan.github.io/Spendly-/" target="_blank" rel="noopener">Open the app</a>
-          <a href="https://github.com/suhaibsdkhan/Spendly-" target="_blank" rel="noopener">Source</a>
-        </div>
-      </article>
+        <article class="proj">
+          <div class="when mono"><b>2026</b>Web app</div>
+          <div class="body">
+            <h3>SettleUp</h3>
+            <p class="what">A Splitwise-style app for splitting bills with friends: groups, invites, multiple payers and currencies, and a debt simplifier that shows its working step by step.</p>
+            <dl class="kv spec">
+              <dt>Built with</dt><dd>Python, Django, PostgreSQL, Tailwind CSS; deploys to Render</dd>
+              <dt>Design</dt><dd>Every split type reduces to paid and owed per person; all money math in integer cents</dd>
+              <dt>Tested with</dt><dd>Django test suite; the simplifier checks that nobody's total changed</dd>
+              <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/SettleUp" target="_blank" rel="noopener">Repository</a></dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="proj">
+          <div class="when mono"><b>2026</b>Offline web app</div>
+          <div class="body">
+            <h3>Spendly</h3>
+            <p class="what">A personal expense tracker that installs as an app and works offline. It imports Scotiabank statement PDFs on the device, matches refunds to purchases and never double-counts overlapping statements.</p>
+            <dl class="kv spec">
+              <dt>Built with</dt><dd>JavaScript, service worker, PDF.js, localStorage</dd>
+              <dt>Ships</dt><dd>Static files, auto-deployed to GitHub Pages on every push</dd>
+              <dt>Links</dt><dd><a href="https://suhaibsdkhan.github.io/Spendly-/" target="_blank" rel="noopener">Open the app</a><a href="https://github.com/suhaibsdkhan/Spendly-" target="_blank" rel="noopener">Repository</a></dd>
+            </dl>
+          </div>
+        </article>
+
+      </div>
     </div>
   </section>
 
-  <section id="more" aria-labelledby="more-h">
-    <div class="sec-head">
-      <p class="label">More projects</p>
-      <h2 id="more-h">Coursework and side builds</h2>
-    </div>
-    <div class="ledger-wrap">
-      <table class="ledger">
-        <tbody>
-          <tr>
-            <td class="name"><a href="https://github.com/suhaibsdkhan/file-encryption-tool" target="_blank" rel="noopener">File Encryption Tool</a></td>
-            <td class="desc">AES-256 in EAX or GCM mode with scrypt key derivation, a fresh salt and nonce per file, chunked encryption for large files, and both a GUI and a CLI.</td>
-            <td class="lang">Python</td>
-          </tr>
-          <tr>
-            <td class="name"><a href="https://github.com/suhaibsdkhan/dns-client-CISC335" target="_blank" rel="noopener">DNS Client</a></td>
-            <td class="desc">Builds raw DNS packets, queries over UDP and parses A, NS, CNAME, PTR and MX records, including name compression. CISC 335.</td>
-            <td class="lang">Python</td>
-          </tr>
-          <tr>
-            <td class="name"><a href="https://github.com/suhaibsdkhan/Rental-Management-System-CISC327" target="_blank" rel="noopener">Rental Management System</a></td>
-            <td class="desc">Leases, rent payments and maintenance requests with role-based access, plus unit, integration and end-to-end test suites. Team project, CISC 327.</td>
-            <td class="lang">C# · .NET</td>
-          </tr>
-          <tr>
-            <td class="name"><a href="https://github.com/suhaibsdkhan/Traffic-Sign-Detection-and-Recognition-System" target="_blank" rel="noopener">Traffic Sign Recognition</a></td>
-            <td class="desc">YOLOv5 detection with a ResNet-18 classifier trained on the German Traffic Sign Recognition Benchmark, running on video or webcam.</td>
-            <td class="lang">Python · PyTorch</td>
-          </tr>
-          <tr>
-            <td class="name"><a href="https://github.com/suhaibsdkhan/Space-Invaders-Project-in-C" target="_blank" rel="noopener">Space Invaders</a></td>
-            <td class="desc">The arcade classic in C with SDL2: collisions, scoring, lives and a restart loop.</td>
-            <td class="lang">C · SDL2</td>
-          </tr>
-          <tr>
-            <td class="name"><a href="https://github.com/suhaibsdkhan/CISC-365-Algorithms" target="_blank" rel="noopener">Algorithms</a></td>
-            <td class="desc">Greedy, divide and conquer, dynamic programming and branch and bound solutions. CISC 365.</td>
-            <td class="lang">Python</td>
-          </tr>
-          <tr>
-            <td class="name"><a href="https://github.com/suhaibsdkhan/ECON-290-NPV-Calculations" target="_blank" rel="noopener">NPV Models</a></td>
-            <td class="desc">Net present value models comparing homeowner and government costs for an Ontario project. ECON 290.</td>
-            <td class="lang">Python</td>
-          </tr>
-        </tbody>
-      </table>
+  <section id="other" aria-labelledby="other-h">
+    <div class="g">
+      <div class="lab">
+        <h2 id="other-h">Other work</h2>
+        <p>Coursework and earlier side projects.</p>
+      </div>
+      <div class="con">
+        <table class="index">
+          <tbody>
+            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/file-encryption-tool" target="_blank" rel="noopener">File Encryption Tool</a></td><td class="d">AES-256 (EAX or GCM) with scrypt key derivation, a fresh salt and nonce per file, GUI and CLI.</td><td class="s">Python · 2025</td></tr>
+            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/dns-client-CISC335" target="_blank" rel="noopener">DNS Client</a></td><td class="d">Raw DNS packets over UDP; parses A, NS, CNAME, PTR and MX records with name compression.</td><td class="s">Python · 2025</td></tr>
+            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/Rental-Management-System-CISC327" target="_blank" rel="noopener">Rental Management System</a></td><td class="d">Leases, payments and maintenance with role-based access, plus unit, integration and end-to-end tests. Team of three.</td><td class="s">C# · .NET · 2025</td></tr>
+            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/Traffic-Sign-Detection-and-Recognition-System" target="_blank" rel="noopener">Traffic Sign Recognition</a></td><td class="d">YOLOv5 detection and a ResNet-18 classifier trained on GTSRB, running on video or webcam.</td><td class="s">Python · 2025</td></tr>
+            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/Space-Invaders-Project-in-C" target="_blank" rel="noopener">Space Invaders</a></td><td class="d">The arcade game in C with SDL2: collisions, score, lives and restart.</td><td class="s">C · 2025</td></tr>
+            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/CISC-365-Algorithms" target="_blank" rel="noopener">Algorithms</a></td><td class="d">Greedy, divide and conquer, dynamic programming and branch and bound.</td><td class="s">Python · 2025</td></tr>
+            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/ECON-290-NPV-Calculations" target="_blank" rel="noopener">NPV Models</a></td><td class="d">Net present value models for an Ontario project, homeowner and government cases.</td><td class="s">Python · 2025</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
-  <section id="experience" aria-labelledby="exp-h">
-    <div class="sec-head">
-      <p class="label">Experience &amp; education</p>
-      <h2 id="exp-h">Where I've been doing it</h2>
-    </div>
-    <div class="timeline">
-      <div class="entry">
-        <div class="when">May 2025 – Sept 2026</div>
-        <div>
-          <h3>Quality Engineer Intern</h3>
-          <p class="org">Ontario Teachers' Pension Plan · Toronto</p>
-          <ul>
-            <li>Worked with both frontend and backend development teams to test features across the stack, from UI flows to APIs and data.</li>
-            <li>Built Databricks evaluation pipelines for automated and AI-assisted workflows, bringing AI tools into the team's testing process.</li>
-          </ul>
-        </div>
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="g">
+      <div class="lab">
+        <h2 id="skills-h">Skills</h2>
+        <p>Two halves of the same job.</p>
       </div>
-      <div class="entry">
-        <div class="when">Winter 2027</div>
+      <div class="con skills">
         <div>
-          <h3>Undergraduate Research Project</h3>
-          <p class="org">CISC 499 · Queen's University · supervised by Prof. Yuanzhu Chen</p>
+          <h3>Build <span>software engineering</span></h3>
+          <dl class="kv">
+            <dt>Languages</dt><dd>Java, TypeScript, JavaScript, Python, C#, C, SQL</dd>
+            <dt>Backend</dt><dd>Spring Boot, Node.js + Express, Django, .NET</dd>
+            <dt>Frontend</dt><dd>React, Vite, installable offline web apps</dd>
+            <dt>Data &amp; cloud</dt><dd>PostgreSQL, Docker, Terraform, AWS, Databricks</dd>
+          </dl>
         </div>
-      </div>
-      <div class="entry">
-        <div class="when">QHacks 2025</div>
         <div>
-          <h3>Organizing Committee</h3>
-          <p class="org">QHacks 2025 · Queen's University's annual hackathon</p>
-        </div>
-      </div>
-      <div class="entry">
-        <div class="when">Current</div>
-        <div>
-          <h3>Computing</h3>
-          <p class="org">Queen's University · cybersecurity focus</p>
-          <ul>
-            <li>Courses include computer networks (CISC 335, A+), software quality (CISC 327) and algorithms (CISC 365), plus economics electives.</li>
-          </ul>
+          <h3>Verify <span>quality engineering</span></h3>
+          <dl class="kv">
+            <dt>Automation</dt><dd>JUnit 5, Mockito, Rest Assured, Cucumber, Playwright, Selenium</dd>
+            <dt>API &amp; load</dt><dd>Postman/Newman, JSON Schema contracts, Gatling</dd>
+            <dt>Security</dt><dd>OWASP ZAP, Trivy, npm audit, dependency review</dd>
+            <dt>CI &amp; reports</dt><dd>GitHub Actions, Allure, JaCoCo, axe-core</dd>
+          </dl>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="contact" aria-labelledby="contact-h">
-    <p class="label">Contact</p>
-    <h2 id="contact-h">Hiring software or quality engineers for 2027? Let's talk.</h2>
-    <div class="addr">
-      <code id="email">khansuhaib33@gmail.com</code>
-      <button class="btn" id="copy-btn" type="button">Copy email</button>
+  <section id="experience" aria-labelledby="xp-h">
+    <div class="g">
+      <div class="lab">
+        <h2 id="xp-h">Experience and education</h2>
+      </div>
+      <div class="con">
+        <dl class="xp">
+          <dt>May 2025 – Sept 2026</dt>
+          <dd>
+            <h3>Quality Engineer Intern</h3>
+            <p class="org">Ontario Teachers' Pension Plan, Toronto</p>
+            <ul>
+              <li>Worked with frontend and backend development teams to test features across the stack, from UI flows to APIs and data.</li>
+              <li>Built Databricks evaluation pipelines for automated and AI-assisted workflows, bringing AI tools into the team's testing process.</li>
+            </ul>
+          </dd>
+          <dt>Winter 2027</dt>
+          <dd>
+            <h3>Undergraduate Research Project</h3>
+            <p class="org">CISC 499, Queen's University, supervised by Prof. Yuanzhu Chen</p>
+          </dd>
+          <dt>QHacks 2025</dt>
+          <dd>
+            <h3>Organizing Committee</h3>
+            <p class="org">QHacks, Queen's University's annual hackathon</p>
+          </dd>
+          <dt>Current</dt>
+          <dd>
+            <h3>Computing, cybersecurity focus</h3>
+            <p class="org">Queen's University, Kingston</p>
+            <ul>
+              <li>Courses include computer networks (CISC 335, A+), software quality (CISC 327) and algorithms (CISC 365).</li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
     </div>
-    <div id="copy-status" role="status" aria-live="polite"></div>
-    <div class="links"><a href="https://github.com/suhaibsdkhan" target="_blank" rel="noopener">github.com/suhaibsdkhan</a></div>
   </section>
 
-  <footer>
-    <span>© 2026 Suhaib Sadeque Khan</span>
-    <span>Kingston · Toronto</span>
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="g">
+      <div class="lab">
+        <h2 id="contact-h">Contact</h2>
+        <p>Hiring software or quality engineers for 2027? Write to me.</p>
+      </div>
+      <div class="con">
+        <p class="mail" id="email">khansuhaib33@gmail.com</p>
+        <div class="contact-row">
+          <button id="copy-btn" type="button">Copy email</button>
+          <a href="https://github.com/suhaibsdkhan" target="_blank" rel="noopener">github.com/suhaibsdkhan</a>
+        </div>
+        <div id="copy-status" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="g">
+    <div class="lab">© 2026 Suhaib Sadeque Khan</div>
+    <div class="con">Plain HTML and CSS on a 12-column grid. Set in Archivo and IBM Plex Mono.</div>
   </footer>
 </div>
 
 <script>
 (function () {
+  var overlay = document.getElementById('grid-overlay');
+  var gbtn = document.getElementById('grid-btn');
+  function toggleGrid() {
+    overlay.hidden = !overlay.hidden;
+    gbtn.setAttribute('aria-pressed', String(!overlay.hidden));
+    gbtn.textContent = overlay.hidden ? 'Show grid (G)' : 'Hide grid (G)';
+  }
+  gbtn.addEventListener('click', toggleGrid);
+  document.addEventListener('keydown', function (e) {
+    if ((e.key === 'g' || e.key === 'G') && !e.metaKey && !e.ctrlKey && !e.altKey &&
+        !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) toggleGrid();
+  });
+
   var btn = document.getElementById('copy-btn');
   var status = document.getElementById('copy-status');
   var el = document.getElementById('email');
@@ -416,8 +418,8 @@ footer { font-family: var(--mono); font-size: 12.5px; color: var(--muted); displ
   }
   btn.addEventListener('click', function () {
     var text = el.textContent.trim();
-    var done = function () { status.textContent = 'Copied to clipboard.'; };
-    var fail = function () { selectText(); status.textContent = 'Selected. Press Ctrl+C or ⌘C to copy.'; };
+    var done = function () { status.textContent = 'Copied.'; };
+    var fail = function () { selectText(); status.textContent = 'Selected. Press Ctrl+C or Cmd+C to copy.'; };
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fail);
       else fail();
