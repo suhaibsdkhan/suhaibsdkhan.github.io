@@ -96,6 +96,14 @@ section { padding-block: 56px; border-top: 1px solid var(--ink); }
 .proj .spec .pass::before { content: "✓ "; color: var(--red); font-weight: 600; }
 .proj .spec dd a { margin-right: 18px; }
 .stackcol { display: grid; gap: 18px; min-width: 0; }
+.minis { display: grid; grid-template-columns: 1fr 1fr; gap: 44px 32px; }
+.mini { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.mini .kind { margin: 0; color: var(--muted); }
+.mini h3 { font-size: 1.6rem; font-stretch: 80%; line-height: 1.05; letter-spacing: -0.015em; }
+.mini .what { margin: 0; }
+.mini .spec { grid-template-columns: 7.5rem 1fr; font-size: 15.5px; }
+.mini .spec dt:first-of-type, .mini .spec dd:first-of-type { border-top: 1px solid var(--ink); }
+.mini .spec dd a { margin-right: 18px; }
 .split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px; align-items: start; }
 figure { margin: 0; min-width: 0; }
 .shot { border: 1px solid var(--ink); background: #ffffff; aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; }
@@ -140,7 +148,7 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
   .portrait { width: min(220px, 60%); }
   section { padding-block: 44px; }
   section > .g { row-gap: 24px; }
-  .skills, .split { grid-template-columns: 1fr; }
+  .skills, .split, .minis { grid-template-columns: 1fr; }
   .skills { gap: 32px; }
   .index .s { display: none; }
   .index .t { width: 38%; }
@@ -166,6 +174,7 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
     <span class="who">Suhaib Sadeque Khan</span>
     <nav aria-label="Sections">
       <a href="#work">Work</a>
+      <a href="#more">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
@@ -207,13 +216,13 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
             <h3>Secure Test Results Dashboard</h3>
             <div class="split">
               <div class="stackcol">
-                <p class="what">Teams upload a JUnit XML report from any CI job and see pass-rate trends, flaky tests, slow tests and failure output. It runs on AWS, and its own pipeline treats security scans as blocking gates.</p>
+                <p class="what">Teams upload a JUnit XML report from any CI job and see pass-rate trends, flaky tests, slow tests and failure output. It tracks the Harbour Bank suites and its own pipeline, so it shows its own security posture over time.</p>
                 <dl class="kv spec">
-                  <dt>Frontend</dt><dd>React 19, TypeScript, Vite, hand-built SVG charts</dd>
-                  <dt>Backend</dt><dd>Node 22, Express 5, zod validation, rate limiting, PostgreSQL 16</dd>
-                  <dt>Infra</dt><dd>Terraform: ECS Fargate, RDS, ALB, CloudFront, WAF; distroless non-root image</dd>
-                  <dt>Tested with</dt><dd>Unit and API integration tests, OWASP ZAP, Trivy, npm audit</dd>
-                  <dt>Result</dt><dd class="pass">ZAP baseline went from 4 failing checks to clean; each fix is pinned by a regression test</dd>
+                  <dt>Frontend</dt><dd>React 19, TypeScript, Vite, React Router, hand-built SVG charts</dd>
+                  <dt>Backend</dt><dd>Node 22, Express 5, zod validation, helmet, rate limiting, PostgreSQL 16 with plain SQL migrations</dd>
+                  <dt>Infra</dt><dd>Terraform on AWS: VPC, ECS Fargate, ALB, RDS, ECR, Secrets Manager, CloudFront, WAF; distroless non-root container</dd>
+                  <dt>Pipeline</dt><dd>GitHub Actions with OWASP ZAP (baseline and authenticated API scan), Trivy, npm audit and dependency review as blocking gates; OIDC deploy with no stored keys</dd>
+                  <dt>Result</dt><dd class="pass">ZAP baseline went from 4 failing checks to clean; every fix is pinned by a regression test</dd>
                   <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/secure-test-dashboard" target="_blank" rel="noopener">Repository</a><a href="https://github.com/suhaibsdkhan/secure-test-dashboard/blob/main/docs/security-findings.md" target="_blank" rel="noopener">Security findings</a></dd>
                 </dl>
               </div>
@@ -231,13 +240,13 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
             <h3>Harbour Bank QE Framework</h3>
             <div class="split">
               <div class="stackcol">
-                <p class="what">A Spring Boot banking API and web UI with transfers, a double-entry ledger and safe concurrent withdrawals, plus the test automation framework a bank's QE team would build around it.</p>
+                <p class="what">A Spring Boot banking API and web UI with transfers, a double-entry ledger and safe concurrent withdrawals, plus the test automation framework a bank's QE team would build around it, with a written test strategy, risk ranking and requirement-to-test traceability.</p>
                 <dl class="kv spec">
-                  <dt>Built with</dt><dd>Java 21, Spring Boot 3.5, PostgreSQL, Docker</dd>
-                  <dt>Tested with</dt><dd>JUnit 5, Mockito, Rest Assured, Cucumber, Playwright, Selenium, Postman/Newman, Gatling, axe-core</dd>
-                  <dt>CI</dt><dd>GitHub Actions, five parallel jobs, one merged Allure report per push</dd>
-                  <dt>Result</dt><dd class="pass">About 100 checks per push; 99% line and 92% branch coverage; load test held p95 under 500 ms</dd>
-                  <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/Harbour-bank-qe-framework" target="_blank" rel="noopener">Repository</a><a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/" target="_blank" rel="noopener">Allure report</a><a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/performance/" target="_blank" rel="noopener">Load test</a></dd>
+                  <dt>Built with</dt><dd>Java 21, Spring Boot 3.5, PostgreSQL, Docker Compose</dd>
+                  <dt>Tested with</dt><dd>JUnit 5, Mockito, Rest Assured with JSON Schema, Cucumber, Playwright, Selenium (Chrome and Firefox), Postman/Newman, Gatling, axe-core, SQL checks over JDBC</dd>
+                  <dt>CI</dt><dd>GitHub Actions, five parallel jobs plus a nightly run; one merged Allure report published to GitHub Pages</dd>
+                  <dt>Result</dt><dd class="pass">About 100 checks per push; 99% line and 92% branch coverage; load test held p95 under 500 ms with under 1% errors; no overdraft under parallel withdrawals</dd>
+                  <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/Harbour-bank-qe-framework" target="_blank" rel="noopener">Repository</a><a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/" target="_blank" rel="noopener">Allure report</a><a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/coverage/" target="_blank" rel="noopener">Coverage</a><a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/performance/" target="_blank" rel="noopener">Load test</a></dd>
                 </dl>
               </div>
               <figure>
@@ -249,30 +258,97 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
         </article>
 
         <article class="proj">
+          <div class="when mono"><b>2026</b>Offline web app</div>
+          <div class="body">
+            <h3>Spendly</h3>
+            <div class="split">
+              <div class="stackcol">
+                <p class="what">A personal expense tracker that installs as a desktop app and works offline. It reads credit card statement PDFs on the device, puts each purchase in the month it was made and never double-counts when statements overlap. Nothing is uploaded anywhere.</p>
+                <dl class="kv spec">
+                  <dt>Features</dt><dd>Monthly totals, change vs last month, donut chart, per-category budgets that turn amber at 85% and red when over; custom categories and currency</dd>
+                  <dt>Statement import</dt><dd>Parses Scotiabank PDFs with PDF.js, cancels refunds against the original purchase, skips card payments and lines already added, and learns your category for each merchant</dd>
+                  <dt>Built with</dt><dd>Vanilla JavaScript, service worker, web app manifest, localStorage; CSV export and JSON backup and restore</dd>
+                  <dt>Ships</dt><dd>Static files with no build step, deployed to GitHub Pages by a workflow on every push</dd>
+                  <dt>Links</dt><dd><a href="https://suhaibsdkhan.github.io/Spendly-/" target="_blank" rel="noopener">Open the app</a><a href="https://github.com/suhaibsdkhan/Spendly-" target="_blank" rel="noopener">Repository</a></dd>
+                </dl>
+              </div>
+              <figure>
+                <div class="shot"><img src="img/spendly.jpg" alt="Spendly's monthly view: add-expense form, spending total, budget left, a category donut chart and budget bars" loading="lazy"></div>
+                <figcaption>Monthly view, shown with sample expenses</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj">
           <div class="when mono"><b>2026</b>Web app</div>
           <div class="body">
             <h3>SettleUp</h3>
-            <p class="what">A Splitwise-style app for splitting bills with friends: groups, invites, multiple payers and currencies, and a debt simplifier that shows its working step by step.</p>
+            <p class="what">A Splitwise-style app for splitting bills with friends. Groups for trips and homes, friends who haven't signed up yet, expenses split equally, by exact amounts, percentages or shares with one or several payers, and a "How we simplified" page that walks through every step of settling a group's debts.</p>
             <dl class="kv spec">
-              <dt>Built with</dt><dd>Python, Django, PostgreSQL, Tailwind CSS; deploys to Render</dd>
-              <dt>Design</dt><dd>Every split type reduces to paid and owed per person; all money math in integer cents</dd>
-              <dt>Tested with</dt><dd>Django test suite; the simplifier checks that nobody's total changed</dd>
+              <dt>Built with</dt><dd>Python, Django, PostgreSQL, Tailwind CSS; one-click deploy to Render from a blueprint</dd>
+              <dt>Design</dt><dd>Every split type reduces to paid and owed per person; all money math in integer cents; a service layer owns every permission check and write</dd>
+              <dt>Algorithm</dt><dd>Debt simplification nets each person's balance and settles a group of n people in at most <span style="white-space:nowrap">n − 1</span> payments, kept separately per currency</dd>
+              <dt>Tested with</dt><dd>16 Django tests, including randomized groups that check nets are preserved and the payment bound holds, splits that always sum to the total, and outsiders blocked from groups</dd>
               <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/SettleUp" target="_blank" rel="noopener">Repository</a></dd>
             </dl>
           </div>
         </article>
 
-        <article class="proj">
-          <div class="when mono"><b>2026</b>Offline web app</div>
-          <div class="body">
-            <h3>Spendly</h3>
-            <p class="what">A personal expense tracker that installs as an app and works offline. It imports Scotiabank statement PDFs on the device, matches refunds to purchases and never double-counts overlapping statements.</p>
-            <dl class="kv spec">
-              <dt>Built with</dt><dd>JavaScript, service worker, PDF.js, localStorage</dd>
-              <dt>Ships</dt><dd>Static files, auto-deployed to GitHub Pages on every push</dd>
-              <dt>Links</dt><dd><a href="https://suhaibsdkhan.github.io/Spendly-/" target="_blank" rel="noopener">Open the app</a><a href="https://github.com/suhaibsdkhan/Spendly-" target="_blank" rel="noopener">Repository</a></dd>
-            </dl>
-          </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="more" aria-labelledby="more-h">
+    <div class="g">
+      <div class="lab">
+        <h2 id="more-h">More projects</h2>
+        <p>Course and side projects in testing, security, networking and machine learning.</p>
+      </div>
+      <div class="con minis">
+
+        <article class="mini">
+          <p class="kind mono">Team project · CISC 327</p>
+          <h3>Rental Management System</h3>
+          <p class="what">Tenant sign-up, lease agreements, rent payments and maintenance requests with role-based access for tenants and owners. Built with two teammates.</p>
+          <dl class="kv spec">
+            <dt>Built with</dt><dd>C#, ASP.NET Core Razor Pages, Entity Framework Core, PostgreSQL, Docker Compose</dd>
+            <dt>Tested with</dt><dd>xUnit integration tests, Selenium end-to-end tests, Jest frontend tests, coverlet coverage</dd>
+            <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/Rental-Management-System-CISC327" target="_blank" rel="noopener">Repository</a></dd>
+          </dl>
+        </article>
+
+        <article class="mini">
+          <p class="kind mono">Security tool</p>
+          <h3>File Encryption Tool</h3>
+          <p class="what">Encrypts and decrypts files with a password, from a desktop window or the command line.</p>
+          <dl class="kv spec">
+            <dt>Crypto</dt><dd>AES-256 in GCM or EAX mode (authenticated), scrypt key derivation, a fresh random salt and nonce per file</dd>
+            <dt>Built with</dt><dd>Python, PyCryptodome, Tkinter GUI, CLI with 64 KB chunked streaming and a progress bar</dd>
+            <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/file-encryption-tool" target="_blank" rel="noopener">Repository</a></dd>
+          </dl>
+        </article>
+
+        <article class="mini">
+          <p class="kind mono">Networking · CISC 335</p>
+          <h3>DNS Client</h3>
+          <p class="what">A DNS resolver written from raw sockets, without a DNS library, that prints answers in dig-style format.</p>
+          <dl class="kv spec">
+            <dt>How it works</dt><dd>Packs the header and question by hand, queries over UDP with a timeout, and parses A, NS, CNAME, PTR and MX records including compressed names</dd>
+            <dt>Built with</dt><dd>Python, socket, struct</dd>
+            <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/dns-client-CISC335" target="_blank" rel="noopener">Repository</a></dd>
+          </dl>
+        </article>
+
+        <article class="mini">
+          <p class="kind mono">Machine learning</p>
+          <h3>Traffic Sign Recognition</h3>
+          <p class="what">Finds traffic signs in images or live video and names them, using a detector and a classifier in sequence.</p>
+          <dl class="kv spec">
+            <dt>Models</dt><dd>YOLOv5 for detection, ResNet-18 for 43-class classification, trained on the German Traffic Sign Recognition Benchmark</dd>
+            <dt>Built with</dt><dd>Python, PyTorch, OpenCV, Streamlit app for uploads, webcam inference</dd>
+            <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/Traffic-Sign-Detection-and-Recognition-System" target="_blank" rel="noopener">Repository</a></dd>
+          </dl>
         </article>
 
       </div>
@@ -282,19 +358,15 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
   <section id="other" aria-labelledby="other-h">
     <div class="g">
       <div class="lab">
-        <h2 id="other-h">Other work</h2>
-        <p>Coursework and earlier side projects.</p>
+        <h2 id="other-h">Coursework</h2>
+        <p>Smaller assignments and early projects.</p>
       </div>
       <div class="con">
         <table class="index">
           <tbody>
-            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/file-encryption-tool" target="_blank" rel="noopener">File Encryption Tool</a></td><td class="d">AES-256 (EAX or GCM) with scrypt key derivation, a fresh salt and nonce per file, GUI and CLI.</td><td class="s">Python · 2025</td></tr>
-            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/dns-client-CISC335" target="_blank" rel="noopener">DNS Client</a></td><td class="d">Raw DNS packets over UDP; parses A, NS, CNAME, PTR and MX records with name compression.</td><td class="s">Python · 2025</td></tr>
-            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/Rental-Management-System-CISC327" target="_blank" rel="noopener">Rental Management System</a></td><td class="d">Leases, payments and maintenance with role-based access, plus unit, integration and end-to-end tests. Team of three.</td><td class="s">C# · .NET · 2025</td></tr>
-            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/Traffic-Sign-Detection-and-Recognition-System" target="_blank" rel="noopener">Traffic Sign Recognition</a></td><td class="d">YOLOv5 detection and a ResNet-18 classifier trained on GTSRB, running on video or webcam.</td><td class="s">Python · 2025</td></tr>
-            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/Space-Invaders-Project-in-C" target="_blank" rel="noopener">Space Invaders</a></td><td class="d">The arcade game in C with SDL2: collisions, score, lives and restart.</td><td class="s">C · 2025</td></tr>
-            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/CISC-365-Algorithms" target="_blank" rel="noopener">Algorithms</a></td><td class="d">Greedy, divide and conquer, dynamic programming and branch and bound.</td><td class="s">Python · 2025</td></tr>
-            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/ECON-290-NPV-Calculations" target="_blank" rel="noopener">NPV Models</a></td><td class="d">Net present value models for an Ontario project, homeowner and government cases.</td><td class="s">Python · 2025</td></tr>
+            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/Space-Invaders-Project-in-C" target="_blank" rel="noopener">Space Invaders</a></td><td class="d">The arcade game in C with SDL2: movement, collisions, score, lives and restart.</td><td class="s">C · SDL2</td></tr>
+            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/CISC-365-Algorithms" target="_blank" rel="noopener">Algorithms</a></td><td class="d">Greedy, divide and conquer, dynamic programming and branch and bound. CISC 365.</td><td class="s">Python</td></tr>
+            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/ECON-290-NPV-Calculations" target="_blank" rel="noopener">NPV Models</a></td><td class="d">Net present value models for an Ontario project, homeowner and government cases. ECON 290.</td><td class="s">Python</td></tr>
           </tbody>
         </table>
       </div>
