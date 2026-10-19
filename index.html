@@ -220,7 +220,7 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
                 <dl class="kv spec">
                   <dt>Frontend</dt><dd>React 19, TypeScript, Vite, React Router, hand-built SVG charts</dd>
                   <dt>Backend</dt><dd>Node 22, Express 5, zod validation, helmet, rate limiting, PostgreSQL 16 with plain SQL migrations</dd>
-                  <dt>Infra</dt><dd>Terraform on AWS: VPC, ECS Fargate, ALB, RDS, ECR, Secrets Manager, CloudFront, WAF; distroless non-root container</dd>
+                  <dt>Infra</dt><dd>Terraform for AWS: VPC, ECS Fargate, ALB, RDS, ECR, Secrets Manager, CloudFront, WAF; distroless non-root container</dd>
                   <dt>Pipeline</dt><dd>GitHub Actions with OWASP ZAP (baseline and authenticated API scan), Trivy, npm audit and dependency review as blocking gates; OIDC deploy with no stored keys</dd>
                   <dt>Result</dt><dd class="pass">ZAP baseline went from 4 failing checks to clean; every fix is pinned by a regression test</dd>
                   <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/secure-test-dashboard" target="_blank" rel="noopener">Repository</a><a href="https://github.com/suhaibsdkhan/secure-test-dashboard/blob/main/docs/security-findings.md" target="_blank" rel="noopener">Security findings</a></dd>
@@ -244,7 +244,7 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
                 <dl class="kv spec">
                   <dt>Built with</dt><dd>Java 21, Spring Boot 3.5, PostgreSQL, Docker Compose</dd>
                   <dt>Tested with</dt><dd>JUnit 5, Mockito, Rest Assured with JSON Schema, Cucumber, Playwright, Selenium (Chrome and Firefox), Postman/Newman, Gatling, axe-core, SQL checks over JDBC</dd>
-                  <dt>CI</dt><dd>GitHub Actions, five parallel jobs plus a nightly run; one merged Allure report published to GitHub Pages</dd>
+                  <dt>CI</dt><dd>GitHub Actions, four test jobs in parallel plus a nightly run; one merged Allure report published to GitHub Pages</dd>
                   <dt>Result</dt><dd class="pass">About 100 checks per push; 99% line and 92% branch coverage; load test held p95 under 500 ms with under 1% errors; no overdraft under parallel withdrawals</dd>
                   <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/Harbour-bank-qe-framework" target="_blank" rel="noopener">Repository</a><a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/" target="_blank" rel="noopener">Allure report</a><a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/coverage/" target="_blank" rel="noopener">Coverage</a><a href="https://suhaibsdkhan.github.io/Harbour-bank-qe-framework/performance/" target="_blank" rel="noopener">Load test</a></dd>
                 </dl>
@@ -303,7 +303,7 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
     <div class="g">
       <div class="lab">
         <h2 id="more-h">More projects</h2>
-        <p>Course and side projects in testing, security, networking and machine learning.</p>
+        <p>Course and side projects in testing, security, networking and C.</p>
       </div>
       <div class="con minis">
 
@@ -341,13 +341,13 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
         </article>
 
         <article class="mini">
-          <p class="kind mono">Machine learning</p>
-          <h3>Traffic Sign Recognition</h3>
-          <p class="what">Finds traffic signs in images or live video and names them, using a detector and a classifier in sequence.</p>
+          <p class="kind mono">Game · C</p>
+          <h3>Space Invaders</h3>
+          <p class="what">The arcade game in about 500 lines of C: a row of aliens that sweeps and descends, bullets, score, lives and restart.</p>
           <dl class="kv spec">
-            <dt>Models</dt><dd>YOLOv5 for detection, ResNet-18 for 43-class classification, trained on the German Traffic Sign Recognition Benchmark</dd>
-            <dt>Built with</dt><dd>Python, PyTorch, OpenCV, Streamlit app for uploads, webcam inference</dd>
-            <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/Traffic-Sign-Detection-and-Recognition-System" target="_blank" rel="noopener">Repository</a></dd>
+            <dt>How it works</dt><dd>One game loop for input, movement, rectangle collision checks and drawing; game state in a few globals so a restart can reset it</dd>
+            <dt>Built with</dt><dd>C, SDL2, SDL2_image, SDL2_ttf; builds with make on macOS and Linux</dd>
+            <dt>Links</dt><dd><a href="https://github.com/suhaibsdkhan/Space-Invaders-Project-in-C" target="_blank" rel="noopener">Repository</a></dd>
           </dl>
         </article>
 
@@ -364,7 +364,6 @@ footer .lab, footer .con { font-family: var(--mono); font-size: 12.5px; }
       <div class="con">
         <table class="index">
           <tbody>
-            <tr><td class="t"><a href="https://github.com/suhaibsdkhan/Space-Invaders-Project-in-C" target="_blank" rel="noopener">Space Invaders</a></td><td class="d">The arcade game in C with SDL2: movement, collisions, score, lives and restart.</td><td class="s">C · SDL2</td></tr>
             <tr><td class="t"><a href="https://github.com/suhaibsdkhan/CISC-365-Algorithms" target="_blank" rel="noopener">Algorithms</a></td><td class="d">Greedy, divide and conquer, dynamic programming and branch and bound. CISC 365.</td><td class="s">Python</td></tr>
             <tr><td class="t"><a href="https://github.com/suhaibsdkhan/ECON-290-NPV-Calculations" target="_blank" rel="noopener">NPV Models</a></td><td class="d">Net present value models for an Ontario project, homeowner and government cases. ECON 290.</td><td class="s">Python</td></tr>
           </tbody>
